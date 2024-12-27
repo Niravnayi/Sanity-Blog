@@ -27,8 +27,8 @@ export default function Blog({ post }: BlogProps) {
   return (
     <div className="flex flex-row min-h-screen">
       {/* Sidebar */}
-      <aside className="w-1/4 p-6 bg-gray-100">
-        <h2 className="font-bold mb-4 text-center underline text-xl font-serif line-clamp-1">
+      <aside className="w-1/3 p-6 bg-gray-100 sticky top-0 h-screen overflow-y-auto overflow-hidden">
+        <h2 className="font-bold mb-4 text-center underline text-xl font-serif overflow-hidden ">
           {post.title}
         </h2>
         <ul className="space-y-2">
