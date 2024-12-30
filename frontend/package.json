@@ -25,6 +25,7 @@
     "lucide-react": "^0.469.0",
     "next": "15.1.2",
     "next-sanity": "^9.8.29",
+    "next-sitemap": "^4.2.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-infinite-scroll-component": "^6.1.0",

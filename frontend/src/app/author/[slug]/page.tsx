@@ -5,20 +5,25 @@ import { AUTHOR_QUERY } from "@/src/sanity/lib/queries ";
 import { urlFor } from "@/src/sanity/lib/imageUrlBuilder";
 import { customComponents } from "@/src/components/SerializerComponent";
 
-export async function generateStaticParams() {
-  const authors = await client.fetch(
-    `*[_type == "author"]{"slug": slug.current}`
-  );
-  return authors.map((author: { slug: string }) => ({
-    slug: author.slug,
+export async function generateStaticParams(): Promise<{ slug: string }[]> {
+  const posts = await client.fetch(`*[_type == "post"]{"slug": slug.current}`);
+  return posts.map((post: { slug: string }) => ({
+    slug: post.slug,
   }));
 }
 
-const Author = async ({ params }: { params: Promise<{ slug: string }> }) => {
-  const { slug } = await params;
+// Type definition for dynamic route props
+interface PageProps {
+  params: {
+    slug: string;
+  };
+}
+
+// Component for the dynamic route
+const Author = async ({ params }: PageProps) => {
+  const { slug } = params;
 
   const author = await client.fetch(AUTHOR_QUERY, { slug });
-
   if (!author) {
     return <p>Author not found</p>;
   }

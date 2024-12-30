@@ -25,24 +25,23 @@ export const POST_QUERY = defineQuery(` *[_type == "post" ]{
     }
 `);
 
-export const AUTHORS_QUERY = defineQuery(`
-    *[_type == "author"]{
-        _id,
-        name,
-        slug,
-        image,
-        bio
-    }
+export const AUTHORS_QUERY =
+  defineQuery(`*[_type == "author" && slug.current == $slug]{
+  _id,
+  name,
+  image,
+  slug,
+  bio
+}
 `);
 
 export const AUTHOR_QUERY =
-  defineQuery(`*[_type == "author" && slug.current == $slug][0]{
-        _id,
-        name,
-        slug,
-        image,
-        bio
-    }
+defineQuery(`*[_type == "author" && slug.current == $slug]{
+  _id,
+  name,
+  slug,
+  bio
+}
 `);
 
 export const HEADER_QUERY = defineQuery(`*[_type == "header"]{
